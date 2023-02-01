@@ -1,7 +1,7 @@
 const filePath = process.platform === 'linux' ? '/dev/stdin' : '백준/5585_거스름돈/input.txt';
 const input = require('fs').readFileSync(filePath).toString().trim();
 
-console.log(input);
+console.log(input); //380
 
 let result = 0;
 let price = 1000 - input; //620
@@ -13,7 +13,6 @@ for (let i = 0; i < walletArr.length; i++) {
     let floorToInt = ~~(price / walletArr[i]);
     //2. price에 i번째 배열을 나누고 i번째 배열을 다시 곱해 price에 값을 빼준다.
     price -= floorToInt * walletArr[i];
-
     /*
         620 -= (620/500 = 1) * 500 = 120    result += 1
         120 -= (120/100 = 1) * 100 = 20     result += 1
@@ -23,5 +22,8 @@ for (let i = 0; i < walletArr.length; i++) {
 
     //3. result에 나눈 몫 만큼을 하나씩 더해줌
     result += floorToInt;
+
+    //4. price 가 0이라면 for문을 빠져나옴.
+    if (price === 0) break;
 }
 console.log(result);
